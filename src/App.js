@@ -26,11 +26,15 @@ export default function App() {
       gl={{ alpha: false, antialias: false }}
       camera={{ fov: 75, position: [0, 0, 60], near: 10, far: 150 }}
     >
-      <color attach="background" args={["#f0f0f0"]} />
-      <fog attacg="fog" args={["red", 60, 110]} />
+      <color attach="background" args={["#fff"]} />
+      <fog attacg="fog" args={["#ef00ff", 60, 110]} />
       <ambientLight intensity={1.5} />
       <pointLight position={[100, 10, -50]} intensity={20} castShadow />
-      <pointLight position={[-100, -100, -100]} intensity={10} color="red" />
+      <pointLight
+        position={[-100, -100, -100]}
+        intensity={10}
+        color="#ef00ff"
+      />
       <Bubbles />
       <ContactShadows
         rotation={[Math.PI / 2, 0, 0]}
@@ -47,11 +51,11 @@ export default function App() {
           radius={10}
           intensity={20}
           luminanceInfluence={0.1}
-          color="red"
+          color="#ef00ff"
         />
       </EffectComposer>
       <Suspense fallback={null}>
-        <Environment preset="city" />
+        <Environment preset="warehouse" />
       </Suspense>
     </Canvas>
   );
@@ -77,7 +81,7 @@ function Bubbles() {
       position={[0, 10, 0]}
     >
       <sphereGeometry args={[1, 32, 32]} />
-      <meshStandardMaterial roughness={0} color="#f0f0f0" />
+      <meshStandardMaterial metalness={1} color="#fff" />
       {particles.map((data, i) => (
         <Bubble key={i} {...data} />
       ))}
@@ -88,7 +92,7 @@ function Bubbles() {
 function Bubble({ factor, speed, xFactor, yFactor, zFactor }) {
   const ref = useRef();
   useFrame((state) => {
-    const t = factor + state.clock.elapsedTime * (speed / 2);
+    const t = factor + state.clock.elapsedTime * (speed / 0.7);
     ref.current.scale.setScalar(Math.max(1.5, Math.cos(t) * 5));
     ref.current.position.set(
       Math.cos(t) +

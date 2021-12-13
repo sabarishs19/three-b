@@ -2,3 +2,54 @@
   font-family: sans-serif;
   text-align: center;
 }
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: Inter;
+  color: #101015;
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iI2ZmNmI2YiIvPjwvc3ZnPg=="),
+    auto;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  pointer-events: all;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  color: #505055;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+a.right {
+  left: unset;
+  right: 40px;
+}
+h1 {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 7em;
+}

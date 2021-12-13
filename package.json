@@ -5,9 +5,15 @@
   "keywords": ["react", "starter"],
   "main": "src/index.js",
   "dependencies": {
+    "@react-three/drei": "7.8.4",
+    "@react-three/fiber": "7.0.7",
+    "@react-three/postprocessing": "2.0.5",
+    "@types/three": "0.131.1",
+    "postprocessing": "6.22.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-scripts": "4.0.0"
+    "react-scripts": "4.0.3",
+    "three": "0.132.2"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",

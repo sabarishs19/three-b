@@ -75,7 +75,7 @@ function Bubbles() {
       receiveShadow
       position={[0, 10, 0]}
     >
-      <sphereGeometry args={[1, 32, 32]} />
+      <boxGeometry args={[1, 3, 3]} />
       <meshStandardMaterial metalness={0.1} color="#f0f0f0" />
       {particles.map((data, i) => (
         <Bubble key={i} {...data} />

@@ -13,13 +13,7 @@ ReactDOM.render(
       <a className="right" href="">
         /csb
       </a>
-      <h2>
-        Light, that creative agent
-        <br />
-        the vibrations of which are the movement
-        <br />
-        and life of all things —
-      </h2>
+      <h2>SPACESURF</h2>
     </div>
   </>,
   document.getElementById("root")

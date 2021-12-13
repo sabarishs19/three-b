@@ -1,4 +1,3 @@
-import "./styles.css";
 import { MathUtils } from "three";
 import { useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -10,8 +9,8 @@ import {
 } from "@react-three/drei";
 import { EffectComposer, SSAO } from "@react-three/postprocessing";
 
-const particles = Array.from({ length: 150 }, () => ({
-  factor: MathUtils.randInt(20, 100),
+const particles = Array.from({ length: 200 }, () => ({
+  factor: MathUtils.randInt(30, 100),
   speed: MathUtils.randFloat(0.01, 1),
   xFactor: MathUtils.randFloatSpread(80),
   yFactor: MathUtils.randFloatSpread(40),
@@ -26,15 +25,11 @@ export default function App() {
       gl={{ alpha: false, antialias: false }}
       camera={{ fov: 75, position: [0, 0, 60], near: 10, far: 150 }}
     >
-      <color attach="background" args={["#fff"]} />
-      <fog attacg="fog" args={["#ef00ff", 60, 110]} />
+      <color attach="background" args={["#f0f0f0"]} />
+      <fog attach="fog" args={["blue", 10, 110]} />
       <ambientLight intensity={1.5} />
       <pointLight position={[100, 10, -50]} intensity={20} castShadow />
-      <pointLight
-        position={[-100, -100, -100]}
-        intensity={10}
-        color="#ef00ff"
-      />
+      <pointLight position={[-100, -100, -100]} intensity={10} color="blue" />
       <Bubbles />
       <ContactShadows
         rotation={[Math.PI / 2, 0, 0]}
@@ -51,11 +46,11 @@ export default function App() {
           radius={10}
           intensity={20}
           luminanceInfluence={0.1}
-          color="#ef00ff"
+          color="blue"
         />
       </EffectComposer>
       <Suspense fallback={null}>
-        <Environment preset="warehouse" />
+        <Environment preset="city" />
       </Suspense>
     </Canvas>
   );
@@ -68,7 +63,7 @@ function Bubbles() {
       void (ref.current.rotation.y = MathUtils.damp(
         ref.current.rotation.y,
         (-state.mouse.x * Math.PI) / 6,
-        0.75,
+        0.95,
         delta
       ))
   );
@@ -81,7 +76,7 @@ function Bubbles() {
       position={[0, 10, 0]}
     >
       <sphereGeometry args={[1, 32, 32]} />
-      <meshStandardMaterial metalness={1} color="#fff" />
+      <meshStandardMaterial metalness={0.1} color="#f0f0f0" />
       {particles.map((data, i) => (
         <Bubble key={i} {...data} />
       ))}
@@ -92,7 +87,7 @@ function Bubbles() {
 function Bubble({ factor, speed, xFactor, yFactor, zFactor }) {
   const ref = useRef();
   useFrame((state) => {
-    const t = factor + state.clock.elapsedTime * (speed / 0.7);
+    const t = factor + state.clock.elapsedTime * (speed / 2);
     ref.current.scale.setScalar(Math.max(1.5, Math.cos(t) * 5));
     ref.current.position.set(
       Math.cos(t) +
